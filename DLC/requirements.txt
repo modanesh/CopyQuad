@@ -1,0 +1,15 @@
+# DeepLabCut 3.x for step 1 (2D keypoints, SuperAnimal-Quadruped zero-shot).
+#
+# torch / torchvision are intentionally UNPINNED: Isaac Lab owns those versions and
+# must be installed first, so these resolve to whatever it put in the venv.
+#
+# Only the `modelzoo` extra is needed -- that is what provides SuperAnimal. The `gui`
+# extra (Qt/napari) and `wandb` pull in a large dependency tree that nothing in this
+# pipeline imports; extraction is scripted and zero-shot.
+torch
+torchvision
+# tables 3.8.0 ships extensions built against the numpy 1.x C ABI; numpy 2.x gives
+# "numpy.dtype size changed ... Expected 96 from C header, got 88" on import.
+numpy<2
+tables==3.8.0
+deeplabcut[modelzoo]==3.0.0rc9
